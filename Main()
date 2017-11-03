@@ -161,7 +161,7 @@ void write_student()
 	st.getdata();
 	outFile.write(reinterpret_cast<char *> (&st), sizeof(student));
 	outFile.close();
-    	cout<<"\n\nStudent record Has Been Created ";
+    	cout<<"\n\nStudent record Has Been Created ! ";
 	cin.ignore();
 	cin.get();
 }
@@ -249,18 +249,18 @@ void modify_student(int n)
 		if(st.retrollno()==n)
 		{
 			st.showdata();
-			cout<<"\n\nPlease Enter The New Details of student:- "<<endl;
+			cout<<"\n\nPlease Enter The New Details of student:-\n"<<endl;
 			st.getdata();
 		    	int pos=(-1)*static_cast<int>(sizeof(st));
 		    	File.seekp(pos,ios::cur);
 		    	File.write(reinterpret_cast<char *> (&st), sizeof(student));
-		    	cout<<"\n\n\t Record Updated";
+		    	cout<<"\n\n\t Record Updated! ";
 		    	found=true;
 		}
 	}
 	File.close();
 	if(found==false)
-		cout<<"\n\n Record Not Found ";
+		cout<<"\n\n Record Not Found! ";
 	cin.ignore();
 	cin.get();
 }
@@ -311,7 +311,7 @@ void class_result()
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		cin.ignore();
 		cin.get();
 		return;
@@ -342,7 +342,7 @@ void result()
 	cout<<"\n\n\n\t1. Class Result";
 	cout<<"\n\n\t2. Student Report Card";
 	cout<<"\n\n\t3. Back to Main Menu";
-	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
+	cout<<"\n\n\n\tEnter Choice (1/2/3) : ";
 	cin>>ch;
 	//system("cls");
 	switch(ch)
@@ -364,8 +364,9 @@ void intro()
 	cout<<"\n\n\n\t\t  STUDENT";
 	cout<<"\n\n\t\tREPORT CARD";
 	cout<<"\n\n\t\t  PROJECT";
-	cout<<"\n\n\n\tMADE BY : MOINAK BANERJEE(moinak878)";
+	cout<<"\n\n\n\tMADE BY : MOINAK BANERJEE (moinak878)";
 	cout<<"\n\tSCHOOL : DAV MODEL SCHOOL";
+	cout<<"\n\n*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY*"
 	cin.get();
 }
 
