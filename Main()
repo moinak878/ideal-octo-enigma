@@ -128,7 +128,7 @@ int main()
 	intro();
 	do
 	{
-		//system("cls");
+		std::cout << "\x1B[2J\x1B[H";
 		cout<<"\n\n\n\tMAIN MENU";
 		cout<<"\n\n\t01. RESULT MENU";
 		cout<<"\n\n\t02. ENTRY/EDIT MENU";
@@ -337,14 +337,14 @@ void result()
 {
 	char ch;
 	int rno;
-	//system("cls");
+	std::cout << "\x1B[2J\x1B[H";
 	cout<<"\n\n\n\tRESULT MENU";
 	cout<<"\n\n\n\t1. Class Result";
 	cout<<"\n\n\t2. Student Report Card";
 	cout<<"\n\n\t3. Back to Main Menu";
 	cout<<"\n\n\n\tEnter Choice (1/2/3) : ";
 	cin>>ch;
-	//system("cls");
+	std::cout << "\x1B[2J\x1B[H";
 	switch(ch)
 	{
 	case '1' :	class_result(); break;
@@ -366,7 +366,7 @@ void intro()
 	cout<<"\n\n\t\t  PROJECT";
 	cout<<"\n\n\n\tMADE BY : MOINAK BANERJEE (moinak878)";
 	cout<<"\n\tSCHOOL : DAV MODEL SCHOOL";
-	cout<<"\n\n*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY*"
+	cout<<"\n\n*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY* ";
 	cin.get();
 }
 
@@ -378,7 +378,7 @@ void entry_menu()
 {
 	char ch;
 	int num;
-	//system("cls");
+	std::cout << "\x1B[2J\x1B[H";
 	cout<<"\n\n\n\tENTRY MENU";
 	cout<<"\n\n\t1.CREATE STUDENT RECORD";
 	cout<<"\n\n\t2.DISPLAY ALL STUDENTS' RECORDS";
@@ -388,7 +388,7 @@ void entry_menu()
 	cout<<"\n\n\t6.BACK TO MAIN MENU";
 	cout<<"\n\n\tPlease Enter Your Choice (1-6) : ";
 	cin>>ch;
-	//system("cls");
+	std::cout << "\x1B[2J\x1B[H";
 	switch(ch)
 	{
 	case '1':	write_student(); break;
