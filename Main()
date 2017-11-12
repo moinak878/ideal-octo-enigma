@@ -177,7 +177,7 @@ void display_all()
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		cin.ignore();
 		cin.get();
 		return;
@@ -204,7 +204,7 @@ void display_sp(int n)
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		cin.ignore();
 		cin.get();
 		return;
@@ -237,7 +237,7 @@ void modify_student(int n)
 	File.open("student.dat",ios::binary|ios::in|ios::out);
 	if(!File)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		cin.ignore();
 		cin.get();
 		return;
@@ -276,7 +276,7 @@ void delete_student(int n)
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		cin.ignore();
 		cin.get();
 		return;
