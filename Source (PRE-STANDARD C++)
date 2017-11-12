@@ -1,3 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+ 
+/*
+ *File : main.cpp
+ *Author : moinak
+ *
+ *Created on 12 November,2017, 9:45 AM
+ */
+
 //***************************************************************
 //                   HEADER FILE USED IN PROJECT
 //****************************************************************
@@ -43,9 +56,9 @@ void student::calculate()
 
 void student::getdata()
 {
-	cout<<"\nEnter The roll number of student ";
+	cout<<"\nEnter The roll number of student : ";
 	cin>>rollno;
-	cout<<"\n\nEnter The Name of student ";
+	cout<<"\n\nEnter The Name of student : ";
 	gets(name);
 	cout<<"\nEnter The marks in physics out of 100 : ";
 	cin>>p_marks;
@@ -69,8 +82,8 @@ void student::showdata()
 	cout<<"\nMarks in Maths : "<<m_marks;
 	cout<<"\nMarks in English : "<<e_marks;
 	cout<<"\nMarks in Computer Science :"<<cs_marks;
-	cout<<"\nPercentage of student is  :"<<per;
-	cout<<"\nGrade of student is :"<<grade;
+	cout<<"\nPercentage of student is  : "<<per;
+	cout<<"\nGrade of student is : "<<grade;
 }
 
 void student::show_tabular()
@@ -121,7 +134,7 @@ int main()
 		cout<<"\n\n\t01. RESULT MENU";
 		cout<<"\n\n\t02. ENTRY/EDIT MENU";
 		cout<<"\n\n\t03. EXIT";
-		cout<<"\n\n\tPlease Select Your Option (1-3) ";
+		cout<<"\n\n\tPlease Select Your Option (1-3) : ";
 		cin>>ch;
 		clrscr();
 		switch(ch)
@@ -150,7 +163,7 @@ void write_student()
 	st.getdata();
 	outFile.write((char *) &st, sizeof(student));
 	outFile.close();
-    	cout<<"\n\nStudent record Has Been Created ";
+    	cout<<"\n\nStudent record Has Been Created ! ";
 	cin.ignore();
 	getch();
 }
@@ -166,7 +179,7 @@ void display_all()
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
 	}
@@ -191,7 +204,7 @@ void display_sp(int n)
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
 	}
@@ -223,7 +236,7 @@ void modify_student(int n)
 	File.open("student.dat",ios::binary|ios::in|ios::out);
 	if(!File)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
 	}
@@ -232,18 +245,18 @@ void modify_student(int n)
 		if(st.retrollno()==n)
 		{
 			st.showdata();
-			cout<<"\n\nPlease Enter The New Details of student"<<endl;
+			cout<<"\n\nPlease Enter The New Details of student :-\n"<<endl;
 			st.getdata();
 		    	int pos=(-1)*sizeof(st);
 		    	File.seekp(pos,ios::cur);
 		    	File.write((char *) &st, sizeof(student));
-		    	cout<<"\n\n\t Record Updated";
+		    	cout<<"\n\n\t Record Updated ! ";
 		    	found=1;
 		}
 	}
 	File.close();
 	if(found==0)
-		cout<<"\n\n Record Not Found ";
+		cout<<"\n\n Record Not Found! ";
 	getch();
 }
 
@@ -258,7 +271,7 @@ void delete_student(int n)
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
 	}
@@ -291,14 +304,14 @@ void class_result()
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
 	{
-		cout<<"File could not be open !! Press any Key...";
+		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
 	}
 	cout<<"\n\n\t\tALL STUDENTS RESULT \n\n";
-	cout<<"==========================================================\n";
-	cout<<"R.No       Name        P   C   M   E   CS   %age   Grade"<<endl;
-	cout<<"==========================================================\n";
+	cout<<"=================================================================================\n";
+	cout<<"R.No       Name        P       C       M       E       CS        %age       Grade"<<endl;
+	cout<<"==================================================================================\n";
 	while(inFile.read((char *) &st, sizeof(student)))
 	{
 		st.show_tabular();
@@ -315,11 +328,12 @@ void result()
 {
 	char ch;
 	int rno;
+	clrscr();
 	cout<<"\n\n\n\tRESULT MENU";
 	cout<<"\n\n\n\t1. Class Result";
 	cout<<"\n\n\t2. Student Report Card";
 	cout<<"\n\n\t3. Back to Main Menu";
-	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
+	cout<<"\n\n\n\tEnter Choice (1/2/3) : ";
 	cin>>ch;
 	clrscr();
 	switch(ch)
@@ -342,8 +356,9 @@ void intro()
 	cout<<"\n\n\n\t\t  STUDENT";
 	cout<<"\n\n\t\tREPORT CARD";
 	cout<<"\n\n\t\t  PROJECT";
-	cout<<"\n\n\n\tMADE BY : SULABH AGRAWAL";
-	cout<<"\n\tSCHOOL : CAMBRIDGE SCHOOL";
+	cout<<"\n\n\n\tMADE BY : MOINAK BANERJEE (moinak878)";
+	cout<<"\n\tSCHOOL : DAV MODEL SCHOOL";
+	cout<<"\n\n*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY* ";
 	getch();
 }
 
@@ -363,18 +378,18 @@ void entry_menu()
 	cout<<"\n\n\t4.MODIFY STUDENT RECORD";
 	cout<<"\n\n\t5.DELETE STUDENT RECORD";
 	cout<<"\n\n\t6.BACK TO MAIN MENU";
-	cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
+	cout<<"\n\n\tPlease Enter Your Choice (1-6) : ";
 	cin>>ch;
 	clrscr();
 	switch(ch)
 	{
 	case '1':	write_student(); break;
 	case '2':	display_all(); break;
-	case '3':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+	case '3':	cout<<"\n\n\tPlease Enter The roll number : "; cin>>num;
 			display_sp(num); break;
-	case '4':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+	case '4':	cout<<"\n\n\tPlease Enter The roll number : "; cin>>num;
 			modify_student(num);break;
-	case '5':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
+	case '5':	cout<<"\n\n\tPlease Enter The roll number : "; cin>>num;
 			delete_student(num);break;
 	case '6':	break;
 	default:	cout<<"\a"; entry_menu();
