@@ -19,6 +19,7 @@
 #include<iomanip.h>
 #include<stdio.h>
 #include<conio.h>
+#include<string.h>
 
 
 //***************************************************************
@@ -86,10 +87,20 @@ void student::showdata()
 	cout<<"\nGrade of student is : "<<grade;
 }
 
+/* Here the test length is used as 15 as my name, ie., "Moinak Banerjee",
+has 15 characters and it is used a check against all names for proper formatting */
+
 void student::show_tabular()
 {
-	cout<<rollno<<setw(6)<<" "<<name<<setw(10)<<p_marks<<setw(4)<<c_marks<<setw(4)<<m_marks<<setw(4)
-		<<e_marks<<setw(4)<<cs_marks<<setw(6)<<per<<setw(6)<<" "<<grade<<endl;
+	cout<<rollno<<setw(6)<<" "<<name;
+        if(strlen(name)==15)
+            cout<<setw(10);
+        if(strlen(name)>15)
+            cout<<setw(10-(strlen(name)-15));
+        if(strlen(name)<15)
+            cout<<setw(10+(15-strlen(name)));
+        cout<<p_marks<<setw(4)<<c_marks<<setw(4)<<m_marks<<setw(4)
+		<<e_marks<<setw(4)<<cs_marks<<setw(8)<<per<<setw(6)<<grade<<endl;
 }
 
 int  student::retrollno()
@@ -310,7 +321,7 @@ void class_result()
 	}
 	cout<<"\n\n\t\tALL STUDENTS RESULT \n\n";
 	cout<<"=================================================================================\n";
-	cout<<"R.No       Name        P       C       M       E       CS        %age       Grade"<<endl;
+	cout<<"R.No       Name                 P   C   M   E  CS   %age    Grade"<<endl;
 	cout<<"==================================================================================\n";
 	while(inFile.read((char *) &st, sizeof(student)))
 	{
