@@ -81,7 +81,7 @@ void student::showdata()
 	cout<<"\nMarks in Chemistry : "<<c_marks;
 	cout<<"\nMarks in Maths : "<<m_marks;
 	cout<<"\nMarks in English : "<<e_marks;
-	cout<<"\nMarks in Computer Science :"<<cs_marks;
+	cout<<"\nMarks in Computer Science : "<<cs_marks;
 	cout<<"\nPercentage of student is  : "<<per;
 	cout<<"\nGrade of student is : "<<grade;
 }
@@ -354,8 +354,8 @@ void result()
 void intro()
 {
 	cout<<"\n\n\n\t\t  STUDENT";
-	cout<<"\n\n\t\tREPORT CARD";
-	cout<<"\n\n\t\t  PROJECT";
+	cout<<"\n\n\t\t  REPORT CARD";
+	cout<<"\n\n\t\t    PROJECT";
 	cout<<"\n\n\n\tMADE BY : MOINAK BANERJEE (moinak878)";
 	cout<<"\n\tSCHOOL : DAV MODEL SCHOOL";
 	cout<<"\n\n*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY* ";
@@ -371,7 +371,7 @@ void entry_menu()
 	char ch;
 	int num;
 	clrscr();
-	cout<<"\n\n\n\tENTRY MENU";
+	cout<<"\n\n\n\t    ENTRY MENU";
 	cout<<"\n\n\t1.CREATE STUDENT RECORD";
 	cout<<"\n\n\t2.DISPLAY ALL STUDENTS RECORDS";
 	cout<<"\n\n\t3.SEARCH STUDENT RECORD ";
