@@ -303,3 +303,422 @@ int display()          // prints the main frame
 	  gotoxy(i,5);
 	  cprintf("%c",205);
 	}
+
+	 for(i=3;i<80;i++)
+	{
+		gotoxy(i,24);
+		cprintf("%c",205);
+	}
+
+		for(i=5;i<27;i++)
+	{
+	  gotoxy(i-2,7);
+	  cprintf("%c",196);
+	}
+ }
+
+void display2()               //first screen
+ {
+	int i;
+	gotoxy(31,2);
+	  cprintf("D.A.V MODEL SCHOOL");
+	gotoxy(36,3);
+	  cprintf("  DURGAPUR");
+
+	gotoxy(3,23);
+	  cprintf("Created By:Tamali Kundu,Nunna Lakshmi Saranya,Titas Sarkar,Srijoni Choudhury ");
+
+	gotoxy(60,24);
+	  cprintf("Computer Science,XII");
+
+	 textcolor(7);
+	 for(i=1;i<24;i++)
+	  {
+		 if(i==1)
+		 {
+	  gotoxy(2,3+i);
+	  cprintf("%c",201);
+		 }
+		 else
+	if(i==22)
+	  {
+		 gotoxy(2,3+i);
+		 cprintf("%c",200);
+	  }
+
+		 else
+	 {
+	 gotoxy(2,3+i);
+	 cprintf("º");
+	 }
+	  }
+
+		for(i=1;i<23;i++)
+	  {
+		 if(i==1)
+		 {
+	  gotoxy(80,3+i);
+	  cprintf("%c",187);
+		 }
+		 else
+	if(i==22)
+	  {
+		 gotoxy(79,3+i);
+		 cprintf(" %c",188);
+	  }
+
+		 else
+	 {
+	 gotoxy(80,3+i);
+	 cprintf("º");
+	 }
+	  }
+
+
+	for(i=0;i<77;i++)
+		{
+	gotoxy(3+i,21);
+	cprintf("%c",196);
+		}
+		_setcursortype(_NOCURSOR);
+		textcolor(4);
+		gotoxy(22,4);
+		cprintf("COMPUTERIZED REPORT CARD GENERATION");
+		textcolor(10);
+		textcolor(7);
+		 for(i=3;i<80;i++)
+	{
+	  gotoxy(i,3);
+	  cprintf("%c",205);
+	}
+
+		for(i=3;i<80;i++)
+	{
+	  gotoxy(i,5);
+	  cprintf("%c",205);
+	}
+
+	 for(i=3;i<80;i++)
+	{
+		gotoxy(i,24);
+		cprintf("%c",205);
+	}
+ }
+
+
+void menu()
+{
+	x:
+	int i,choice=0;
+	clrscr();
+	  display();
+	  gotoxy(6,9);
+	  cout<<"NEW RECORD";
+	  gotoxy(6,11);
+	  cout<<"SEARCH RECORD";
+	  gotoxy(6,13);
+	  cout<<"DELETE RECORD";
+	  gotoxy(6,15);
+	  cout<<"MODIFY RECORD";
+	  gotoxy(6,17);
+	  cout<<"DISPLAY ALL";
+	  gotoxy(6,19);
+	  cout<<"EXIT";
+
+	  textcolor(6);
+	  gotoxy(4,9);
+	  cprintf("1");
+	  gotoxy(4,11);
+	  cprintf("2");
+	  gotoxy(4,13);
+	  cprintf("3");
+	  gotoxy(4,15);
+	  cprintf("4");
+	  gotoxy(4,17);
+	  cprintf("5");
+	  gotoxy(4,19);
+	  cprintf("6");
+	  textcolor(7);
+
+	 gotoxy(35,13);
+	 cout<<" ENTER YOUR CHOICE   ";
+		cin>>choice;
+	  if(choice==1)
+		enterrecord();
+	  else if(choice==2)
+		searchrecord();
+	  else if(choice==3)
+		delrecord();
+	  else if(choice==4)
+			 modifyrecord();
+	  else if(choice==5)
+			 display1();
+	  else if(choice==6)
+			 exit(0);
+	  else
+		{
+		 clrscr();
+		 display();
+		 gotoxy(5,12);
+		 cout<<" WRONG CHOICE     ";
+		 gotoxy(32,12);
+		 cout<<"SORRY,WRONG CHOICE !! ENTER BETWEEN 1 AND 6 ";
+		 gotoxy(54,20);
+		  cout<<"Press ENTER to cont......";
+		 getch();
+		 goto x;
+		}
+}
+
+void display1()
+{
+	clrscr();
+	student s;
+	fstream file1("mainfile.dat",ios::binary|ios::in);
+	while(file1.read((char*)&s,sizeof(s)))
+	  {
+		 s.output();
+	  }
+	file1.close();
+
+	menu();
+
+}
+
+
+void enterrecord()
+{
+	clrscr();
+
+	student s;
+	fstream file1("mainfile.dat",ios::app|ios::binary|ios::out);
+	s.input();
+	file1.write((char*)&s,sizeof(s));
+	file1.close();
+	s.output();
+
+	menu();
+}
+
+void modifyrecord()
+{
+	fstream file1;
+	clrscr();
+	display();
+	gotoxy(5,12);
+	cout<<" MODIFY RECORD    ";
+
+	gotoxy(33,12);
+	cout<<" ENTER RECORD (Roll No) TO MODIFY  ";
+	int r,pos=0;
+	char found='f';
+	cin>>r;
+	file1.open("mainfile.dat",ios::binary|ios::in|ios::out);
+	clrscr();
+	student s,ss;
+	while(!file1.eof())
+	{
+		pos=file1.tellg();
+		file1.read((char*)&s,sizeof(s));
+		if(s.rollno==r)
+		{
+		  s.output();
+		  s.input1();
+		  file1.seekg(pos);
+		  file1.write((char*)&s,sizeof(s));
+		  found='t';
+		  break;
+		}
+		}
+		if(found=='f')
+		  {
+			display();
+			gotoxy(5,12);
+			cout<<" MODIFY RECORD    ";
+
+			gotoxy(33,12);
+			cout<<"   RECORD NOT FOUND !!  ";
+			gotoxy(54,20);
+			cout<<"Press ENTER to cont......";
+			getch();
+			}
+		file1.seekg(0);
+		file1.close();
+		menu();
+	}
+
+void delrecord()
+{
+	int r;
+	char found='f',confirm='n';
+	ifstream file1("mainfile.dat",ios::binary|ios::in);
+	ofstream file2("temp.dat",ios::binary|ios::out);
+	student s1,ss;
+
+	clrscr();
+	display();
+	gotoxy(5,12);
+	cout<<" DELETE RECORDS   ";
+
+	gotoxy(33,12);
+	cout<<"ENTER ROLL NUMBER TO  BE DELETED  ";
+	cin>>r;
+	while(file1.read((char*)&s1,sizeof(s1)))
+	{
+
+		if(s1.rollno==r)
+		{
+		  //s1.output();
+		  found='t';
+
+		  display();
+		  gotoxy(5,12);
+		  cout<<" DELETE RECORDS   ";
+		  gotoxy(33,12);
+		  cout<<"The Record is Successfully Deleted ....";
+		  gotoxy(54,20);
+		  cout<<"Press ENTER to cont......";
+		  getch();
+		}
+		else
+		 file2.write((char *)&s1,sizeof(s1));
+	  }
+	  if(found=='f')
+		{
+		display();
+		gotoxy(5,12);
+		cout<<" DELETE RECORDS   ";
+		gotoxy(33,12);
+		cout<<"SORRY,THE RECORD WAS NOT FOUND!              ";
+		gotoxy(54,20);
+		cout<<"Press ENTER to cont......";
+			 getch();
+		  }
+		file1.close();
+		file2.close();
+
+
+		remove("mainfile.dat");
+		rename("temp.dat","mainfile.dat");
+		file1.open("mainfile.dat",ios::in);
+			file1.close();
+		menu();
+		}
+
+void searchrecord()
+{
+	clrscr();
+	int b=0;
+	student s;
+	fstream file1("mainfile.dat",ios::binary|ios::in);
+	display();
+	gotoxy(5,12);
+	cout<<" SEARCHED RECORDS ";
+
+	gotoxy(30,12);
+	cout<<"ENTER ROLL NO.OF THE RECORD TO BE SEARCHED ";
+	int r;
+	cin>>r;
+	while(	file1.read((char*)&s,sizeof(s)))
+	{
+
+		if(s.rollno==r)
+		{
+			clrscr();
+			s.output();
+			b++;
+			//break;
+		}
+
+	}
+	if(b==0)
+	{
+		clrscr();
+		display();
+		gotoxy(5,12);
+		cout<<" SEARCHED RECORDS ";
+		gotoxy(33,12);
+		cout<<"SORRY,THE RECORD WAS NOT FOUND!";
+		gotoxy(54,20);
+		cout<<"Press ENTER to cont......";
+		getch();
+			}
+		clrscr();
+		menu();
+}
+void passw()          // checks whether the person is authorized or not
+{
+ char un[30];
+ gotoxy(30,11);
+ printf("User Name : ");
+ gotoxy(30,13);
+ printf("Passward  : ");
+ gotoxy(42,11);
+ gets(un);
+ gotoxy(42,13);
+ int i=0;
+ char c,ch[20];
+ do
+  {
+	c=getch();
+	ch[i++]=c;
+	if(c==13)
+	  printf(" ");
+	else
+	  printf("*");
+  }while(c!=13);
+  ch[i-1]=NULL;
+	 if(strcmp(ch,"Class12e")==0 && strcmpi(un,"Project")==0)
+	 {
+		gotoxy(30,15);
+		textcolor(3 + BLINK);
+		cprintf("    MATCH FOUND");getch();
+		textcolor(7);
+		clrscr();
+		display2();
+		gotoxy(25,10);
+		printf("      Please Wait.....");
+		gotoxy(8,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(10,12);
+		gotoxy(67,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(74,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(10,12);
+		for(int j=0;j<=55;j=j+1)
+		 {
+	 gotoxy(69,12);
+	  if(j>=50)
+		 cout<<j*2-10<<"%";
+	  else
+		 cout<<j*2<<"%";
+	 delay(50);
+	 gotoxy(10+j,12);
+	 textcolor(6);
+	 cprintf("Û");
+		 }
+		 delay(3500);
+		 textcolor(7);
+	 }
+	else
+	  {
+		gotoxy(30,15);
+		textcolor(RED + BLINK);
+		cprintf("    MATCH NOT FOUND");getch();
+		exit(0);
+		textcolor(7);
+	  }
+
+}
+void main()
+{
+		 clrscr();
+		 display2();
+		 passw();
+		 menu();
+}
+
