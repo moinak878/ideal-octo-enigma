@@ -31,6 +31,7 @@
 
 void graph(void);
 void basic(void);
+int display();
 
 class student
 {
@@ -369,19 +370,23 @@ void result()
 
 void intro()
 {
+	display();
 	textcolor(RED);
 	void graph(void);
 	void basic(void);
 	gotoxy(36,1);
+	textcolor(RED);
 	cout<<"STUDENT";
 	gotoxy(34,2);
 	cout<<"REPORT CARD";
 	gotoxy(36,3);
 	cout<<"PROJECT";
-	cout<<"\n\n\n\n\n\n\nMADE BY : MOINAK BANERJEE and ANKAN MAN";
-	cout<<"\n\SCHOOL : DAV MODEL SCHOOL";
+	gotoxy(20,8);
+	cout<<"MADE BY : MOINAK BANERJEE and ANKAN MAN";
+	gotoxy(20,9);
+	cout<<"SCHOOL : DAV MODEL SCHOOL";
 	cout<<"\n\n\n\n\n";
-	gotoxy(5,18);
+	gotoxy(10,18);
 	cout<<"*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY* ";
 	getch();
 }
@@ -451,6 +456,80 @@ setbkcolor(2);
 }
 
 
+int display()          // prints the main frame
+ {
+  clrscr();
+	int i;
+
+
+	textcolor(7);
+
+	  for(i=1;i<24;i++)
+	  {
+	 if(i==1)
+		 {
+	  gotoxy(2,3+i);
+	  cprintf("%c",201);
+		 }
+	       else
+	  if(i==22)
+	  {
+		 gotoxy(2,3+i);
+		 cprintf("%c",200);
+	  }
+
+		 else
+
+	 {
+	 gotoxy(2,3+i);
+	 cprintf("º");
+	 }
+	  }
+
+		for(i=1;i<23;i++)
+	  {
+		 if(i==1)
+		 {
+	  gotoxy(80,3+i);
+	  cprintf("%c",187);
+		 }
+		 else
+	if(i==22)
+	  {
+		 gotoxy(79,3+i);
+		 cprintf("e%c",188);
+	  }
+
+		 else
+	 {
+	 gotoxy(80,3+i);
+	 cprintf("º");
+	 }
+		}
+		_setcursortype(_NOCURSOR);
+
+		textcolor(10);
+
+		gotoxy(4,23);
+		cprintf("%s",__DATE__);
+		gotoxy(6,23);
+		textcolor(7);
+		 for(i=3;i<80;i++)
+	{
+	  gotoxy(i,3);
+	  cprintf("%c",205);
+	}
+
+
+
+	 for(i=3;i<80;i++)
+	{
+		gotoxy(i,24);
+		cprintf("%c",205);
+	}
+
+
+ }
 //***************************************************************
 //    			END OF PROJECT
 //***************************************************************
