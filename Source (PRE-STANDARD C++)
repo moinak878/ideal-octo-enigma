@@ -59,7 +59,8 @@ void class_result();       //display all records in tabular format from binary f
 void result();		   //display result menu
 void intro();		   //display welcome screen
 void entry_menu();	   //display entry menu on screen
-int display();             //graphics functions
+void display();	           //graphics functions
+void display2();            //graphics functions
 
 
 
@@ -106,18 +107,72 @@ void student::getdata()
 	calculate();
 }
 
-void student::showdata()
+void student::showdata()                //to display the records
 {
-	cout<<"\nRoll number of student : "<<rollno;
-	cout<<"\nName of student : "<<name;
-	cout<<"\nMarks in Physics : "<<p_marks;
-	cout<<"\nMarks in Chemistry : "<<c_marks;
-	cout<<"\nMarks in Maths : "<<m_marks;
-	cout<<"\nMarks in English : "<<e_marks;
-	cout<<"\nMarks in Computer Science : "<<cs_marks;
-	cout<<"\nPercentage of student is  : "<<per;
-	cout<<"\nGrade of student is : "<<grade;
+	clrscr();
+	display2();
+	gotoxy(4,10);
+	textcolor(RED);
+	cout<<"Undersigned by the";
+	gotoxy(4,11);
+	cout<<"Principal,D.A.V ";
+	gotoxy(4,12);
+	cout<<"Model School,Durgapur";
+	gotoxy(7,17);
+	cout<<"PRESS ENTER TO";
+	gotoxy(7,18);
+	cout<<"   CONTINUE.... ";
+
+	gotoxy(40,6);
+	cout<<"THE DETAILS OF THE STUDENT ";
+	for(int i=0;i<53;i++)
+	 {
+	  gotoxy(26+i,8);
+	  cprintf("%c",196);
+	  gotoxy(26+i,10);
+	  cprintf("%c",196);
+	  gotoxy(26+i,18);
+	  cprintf("%c",196);
+	}
+	gotoxy(27,9);
+	cout<<"Student's Name : "<<name;
+	gotoxy(65,9);
+	cout<<"Roll No : "<<rollno;
+	gotoxy(27,11);
+	cout<<"SUBJECT      "<<"ob. marks   " <<"full marks   "<<"pass marks";
+	gotoxy(27,12);
+	cout<<"=======      "<<"=========   " <<"==========   "<<"==========";
+	gotoxy(27,13);
+	cout<<"ENGLISH     | "<<e_marks<<setw(13)<<"100"<<setw(13)<<"33";
+	gotoxy(27,14);
+	cout<<"PHYSICS     | "<<p_marks<<setw(13)<<"100"<<setw(13)<<"33";
+	gotoxy(27,15);
+	cout<<"CHEMISTRY   | "<<c_marks<<setw(13)<<"100"<<setw(13)<<"33";
+	gotoxy(27,16);
+	cout<<"MATHEMATICS | "<<m_marks<<setw(13)<<"100"<<setw(13)<<"33";
+	gotoxy(27,17);
+	cout<<"COMPUTER    | "<<cs_marks<<setw(13)<<"100"<<setw(13)<<"33";
+	gotoxy(27,20);
+	cout<<"TOTAL : 500 º ";
+	gotoxy(40,20);
+	cout<<"PERCENTAGE : "<<per<<" % º";
+	gotoxy(68,19);
+	cout<<"STATUS";
+
+	if(grade=='F')
+	{
+		gotoxy(66,20);
+		cout<<"FAILED";
+	}
+	else
+	{
+		gotoxy(65,20);
+		cout<<"PASSED,GRADE "<<grade;
+	}
+
+	getch();
 }
+
 
 /* Here the test length is used as 15 as my name, ie., "Moinak Banerjee",
 has 15 characters and it is used a check against all names for proper formatting */
@@ -125,9 +180,9 @@ has 15 characters and it is used a check against all names for proper formatting
 void student::show_tabular()
 {
 
-	gotoxy(5,counter);
+	gotoxy(6,counter);
 	counter++;
-	cout<<rollno<<setw(6)<<name;
+	cout<<rollno<<setw(6)<<"  "<<name;
 	if(strlen(name)==15)
 	    cout<<setw(10);
 	if(strlen(name)>15)
@@ -135,7 +190,7 @@ void student::show_tabular()
 	if(strlen(name)<15)
 	    cout<<setw(10+(15-strlen(name)));
 	cout<<p_marks<<setw(4)<<c_marks<<setw(4)<<m_marks<<setw(4)
-		<<e_marks<<setw(4)<<cs_marks<<setw(8)<<per<<setw(6)<<grade;
+		<<e_marks<<setw(4)<<cs_marks<<setw(8)<<per<<setw(5)<<" "<<grade;
 }
 
 int  student::retrollno()
@@ -216,7 +271,6 @@ void write_student()
 
 void display_all()
 {
-	display();
 	student st;
 	ifstream inFile;
 	inFile.open("student.dat",ios::binary);
@@ -226,15 +280,18 @@ void display_all()
 		getch();
 		return;
 	}
-	cout<<"\n\n\n\t\tDISPLAY ALL RECORD !!!\n\n";
+
 	while(inFile.read((char *) &st, sizeof(student)))
 	{
 		st.showdata();
-		cout<<"\n\n====================================\n";
+
 	}
 	inFile.close();
 	getch();
 }
+
+
+
 
 //***************************************************************
 //    	function to read specific record from file
@@ -501,38 +558,10 @@ void entry_menu()
 }
 
 
-/* void graph()
-{
-int gd=DETECT,gm;
-initgraph(&gd,&gm,"C:/TURBOC3/BGI");
-setcolor(4);
-rectangle(0,0,636,476);
-rectangle(2,2,634,474);
-rectangle(4,4,632,472);
-line(150,52,480,52);
-line(150,50,480,50);
-setbkcolor(2);
-setcolor(15);
-line(25,341,600,341);
-line(25,342,600,342);
-} */
-
-/*void basic()
-{
-int gd=DETECT,gm;
-initgraph(&gd,&gm,"C:/TURBOC3/BGI");
-setcolor(4);
-rectangle(0,0,636,476);
-rectangle(2,2,634,474);
-rectangle(4,4,632,472);
-line(150,52,480,52);
-line(150,50,480,50);
-setbkcolor(2);
-}
-*/
-
-
-int display()          // prints the main frame
+//***************************************************************
+//    	          PRINTS THE MAIN FRAME
+//****************************************************************
+void display()
  {
   clrscr();
 	int i;
@@ -607,6 +636,115 @@ int display()          // prints the main frame
 	}
 
 
+
+ }
+
+
+//***************************************************************
+//       	PRINTS THE MAIN FRAME FOR RESULT
+//****************************************************************
+
+void display2()
+ {
+  clrscr();
+	int i;
+	gotoxy(31,2);
+	  cprintf("D.A.V MODEL SCHOOL");
+	gotoxy(36,3);
+	  cprintf("DURGAPUR");
+
+	gotoxy(20,23);
+	  cprintf("Created By: Moinak Banerjee and Ankan Man");
+
+	textcolor(7);
+	for(i=1;i<18;i++)
+	  {
+		 gotoxy(25,5+i);
+		 cprintf("%c",179);
+	  }
+	 for(i=1;i<24;i++)
+	  {
+		 if(i==1)
+		 {
+	  gotoxy(2,3+i);
+	  cprintf("%c",201);
+		 }
+		 else
+	if(i==22)
+	  {
+		 gotoxy(2,3+i);
+		 cprintf("%c",200);
+	  }
+
+		 else
+	 {
+	 gotoxy(2,3+i);
+	 cprintf("º");
+	 }
+	  }
+
+		for(i=1;i<23;i++)
+	  {
+		 if(i==1)
+		 {
+	  gotoxy(80,3+i);
+	  cprintf("%c",187);
+		 }
+		 else
+	if(i==22)
+	  {
+		 gotoxy(79,3+i);
+		 cprintf("e%c",188);
+	  }
+
+		 else
+	 {
+	 gotoxy(80,3+i);
+	 cprintf("º");
+	 }
+	  }
+
+
+	for(i=0;i<77;i++)
+		{
+	gotoxy(3+i,21);
+	cprintf("%c",196);
+		}
+		_setcursortype(_NOCURSOR);
+		textcolor(4);
+		gotoxy(22,4);
+		cprintf("COMPUTERIZED REPORT CARD GENERATION");
+		textcolor(10);
+
+		gotoxy(5,6);
+		cprintf("       N.B.");
+		gotoxy(4,23);
+		cprintf("%s",__DATE__);
+		gotoxy(6,23);
+		textcolor(7);
+		 for(i=3;i<80;i++)
+	{
+	  gotoxy(i,3);
+	  cprintf("%c",205);
+	}
+
+		for(i=3;i<80;i++)
+	{
+	  gotoxy(i,5);
+	  cprintf("%c",205);
+	}
+
+	 for(i=3;i<80;i++)
+	{
+		gotoxy(i,24);
+		cprintf("%c",205);
+	}
+
+		for(i=5;i<27;i++)
+	{
+	  gotoxy(i-2,7);
+	  cprintf("%c",196);
+	}
  }
 //***************************************************************
 //    			END OF PROJECT
