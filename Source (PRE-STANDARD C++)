@@ -20,6 +20,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
+#include<dos.h>
 
 
 //***************************************************************
@@ -500,7 +501,36 @@ void intro()
 	cout<<"\n\n\n\n\n";
 	gotoxy(10,18);
 	cout<<"*DISCLAIMER : IN CASE THE PROGRAM SEEMS TO STOP..PRESS ANY KEY* ";
-	getch();
+		 getch();
+				    clrscr();
+		display();
+		gotoxy(25,10);
+		printf("      Please Wait.....");
+		gotoxy(8,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(10,12);
+		gotoxy(67,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(74,12);
+		textcolor(6);
+		cprintf("Û");
+		gotoxy(10,12);
+		for(int j=0;j<=55;j=j+1)
+		 {
+	 gotoxy(69,12);
+	  if(j>=50)
+		 cout<<j*2-10<<"%";
+	  else
+		 cout<<j*2<<"%";
+	 delay(50);
+	 gotoxy(10+j,12);
+	 textcolor(6);
+	 cprintf("Û");
+		 }
+		 delay(3500);
+		 textcolor(RED);
 }
 
 //***************************************************************
