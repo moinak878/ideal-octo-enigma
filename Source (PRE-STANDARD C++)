@@ -61,7 +61,7 @@ void result();		   //display result menu
 void intro();		   //display welcome screen
 void entry_menu();	   //display entry menu on screen
 void display();	           //graphics functions
-void display2();            //graphics functions
+voxid display2();            //graphics functions
 
 
 
@@ -276,7 +276,7 @@ void display_all()
 	ifstream inFile;
 	inFile.open("student.dat",ios::binary);
 	if(!inFile)
-	{
+	{       gotoxy(5,3);
 		cout<<"File could not be opened !! Press any Key...";
 		getch();
 		return;
@@ -324,9 +324,11 @@ void display_sp(int n)
 	}
 	inFile.close();
 	if(flag==0)
-		textcolor(RED);
-		gotoxy(28,7);
-		cout<<"record does not exist!";
+	      {
+			textcolor(RED);
+			gotoxy(28,7);
+			cout<<"record does not exist!";
+	      }
 	getch();
 }
 
@@ -358,17 +360,23 @@ void modify_student(int n)
 			int pos=(-1)*sizeof(st);
 			File.seekp(pos,ios::cur);
 			File.write((char *) &st, sizeof(student));
-			cout<<"\n\n\t Record Updated ! ";
+			clrscr();
+			display();
+			textcolor(RED);
+			gotoxy(31,7);
+			cout<<"      Record Updated ! ";
 			found=1;
 		}
 	}
 	File.close();
 	if(found==0)
+		{
 		clrscr();
 		display();
 		textcolor(RED);
 		gotoxy(31,7);
 		cout<<"Record Not Found! ";
+		}
 	getch();
 }
 
@@ -529,7 +537,7 @@ void intro()
 	 textcolor(6);
 	 cprintf("Û");
 		 }
-		 delay(3500);
+		 delay(500);
 		 textcolor(RED);
 }
 
