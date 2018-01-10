@@ -61,7 +61,7 @@ void result();		   //display result menu
 void intro();		   //display welcome screen
 void entry_menu();	   //display entry menu on screen
 void display();	           //graphics functions
-voxid display2();            //graphics functions
+void display2();            //graphics functions
 
 
 
